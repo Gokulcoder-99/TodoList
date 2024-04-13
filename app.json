@@ -17,14 +17,27 @@
     "ios": {
       "supportsTablet": true
     },
+    "scheme": "your-app-scheme",
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gokulcoder99.Todo_List"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "04635870-14bd-46e1-a9bd-f82664967a64"
+      }
     }
   }
 }
