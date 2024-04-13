@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,51 +7,51 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Pressable,
-  Alert,
-} from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+  Alert
+} from 'react-native'
+import { MaterialIcons, AntDesign } from '@expo/vector-icons'
+
+import { useRouter } from 'expo-router'
+import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const router = useRouter();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
 
   useEffect(() => {
     (async function () {
       try {
-        const token = await AsyncStorage.getItem("authToken");
+        const token = await AsyncStorage.getItem('authToken')
         if (token) {
-          router.replace("/(tabs)/home");
+          router.replace('/(tabs)/home')
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    })();
-  }, []);
+    })()
+  }, [])
 
   const handleLogin = () => {
     const user = {
-      email: email,
-      password: password,
-    };
+      email,
+      password
+    }
 
     axios
-      .post("http://192.168.60.81:3000/api/auth/login", user)
+      .post('http://192.168.60.81:3000/api/auth/login', user)
       .then((response) => {
-        const token = response.data.token;
-        AsyncStorage.setItem("authToken", token);
-        Alert.alert("You have been logged in  successfully");
-        router.replace("/(tabs)/home");
+        const token = response.data.token
+        AsyncStorage.setItem('authToken', token)
+        Alert.alert('You have been logged in  successfully')
+        router.replace('/(tabs)/home')
       })
       .catch((error) => {
-        Alert.alert("Login failed", "An error occurred during Login");
-        console.log("error", error);
-      });
-  };
+        Alert.alert('Login failed', 'An error occurred during Login')
+        console.log('error', error)
+      })
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,22 +61,22 @@ const Login = () => {
       <KeyboardAvoidingView style={styles.formContainer}>
         <Text style={styles.formTitle}>Log in to your account</Text>
         <View style={styles.inputContainer}>
-          <MaterialIcons name="email" size={24} color="gray" />
+          <MaterialIcons name='email' size={24} color='gray' />
           <TextInput
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={styles.input}
-            placeholder="enter your email"
+            placeholder='enter your email'
           />
         </View>
         <View style={styles.inputContainer}>
-          <AntDesign name="lock1" size={24} color="gray" />
+          <AntDesign name='lock1' size={24} color='gray' />
           <TextInput
             value={password}
-            secureTextEntry={true}
+            secureTextEntry
             onChangeText={(text) => setPassword(text)}
             style={styles.input}
-            placeholder="enter your password"
+            placeholder='enter your password'
           />
         </View>
 
@@ -85,7 +85,7 @@ const Login = () => {
             <Text style={styles.loginButtonText}>Login</Text>
           </Pressable>
           <Pressable
-            onPress={() => router.replace("/register")}
+            onPress={() => router.replace('/register')}
             style={styles.signupButton}
           >
             <Text style={styles.signupButtonText}>
@@ -95,79 +95,79 @@ const Login = () => {
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
+    backgroundColor: 'white',
+    alignItems: 'center'
   },
   logoContainer: {
-    marginTop: 80,
+    marginTop: 80
   },
   logoText: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#0066b2",
+    fontWeight: '600',
+    color: '#0066b2'
   },
   formContainer: {
-    alignItems: "center",
-    marginTop: 30,
+    alignItems: 'center',
+    marginTop: 30
   },
   formTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    marginTop: 20,
+    fontWeight: '600',
+    marginTop: 20
   },
   inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 5,
-    backgroundColor: "#E0E0E0",
+    backgroundColor: '#E0E0E0',
     paddingVertical: 5,
     borderRadius: 5,
-    marginTop: 30,
+    marginTop: 30
   },
   input: {
-    color: "gray",
+    color: 'gray',
     marginVertical: 10,
     width: 300,
-    fontSize: 17,
+    fontSize: 17
   },
   bottomRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 12,
-    justifyContent: "space-between",
+    justifyContent: 'space-between'
   },
 
   buttonsContainer: {
-    marginTop: 60,
+    marginTop: 60
   },
   loginButton: {
     width: 200,
-    backgroundColor: "#6699CC",
+    backgroundColor: '#6699CC',
     padding: 15,
     borderRadius: 6,
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   loginButtonText: {
-    textAlign: "center",
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16
   },
   signupButton: {
-    marginTop: 15,
+    marginTop: 15
   },
   signupButtonText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 15,
-    color: "gray",
-  },
-});
+    color: 'gray'
+  }
+})
 
-export default Login;
+export default Login
