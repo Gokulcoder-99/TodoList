@@ -18,10 +18,10 @@ const Index = () => {
   const [taskArr, setTaskArr] = useState([])
   const [update, setUpdate] = useState('')
   const router = useRouter()
-
+ console.log(taskArr)
   useEffect(() => {
     getData()
-  }, [taskArr])
+  }, [])
 
   const getToken = async () => {
     try {
