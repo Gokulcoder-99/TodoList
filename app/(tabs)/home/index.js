@@ -18,7 +18,7 @@ const Index = () => {
   const [taskArr, setTaskArr] = useState([])
   const [update, setUpdate] = useState('')
   const router = useRouter()
-  
+
   useEffect(() => {
     getData()
   }, [])
