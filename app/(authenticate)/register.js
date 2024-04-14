@@ -27,7 +27,7 @@ const Register = () => {
     }
 
     axios
-      .post('http://44.202.30.224/api/auth/signup', user)
+      .post('http://34.226.148.186/api/auth/signup', user)
       .then((response) => {
         console.log(response)
         Alert.alert(

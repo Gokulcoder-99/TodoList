@@ -40,7 +40,7 @@ const Login = () => {
     }
 
     axios
-      .post('http://44.202.30.224/api/auth/login', user)
+      .post('http://34.226.148.186/api/auth/login', user)
       .then((response) => {
         const token = response.data.token
         AsyncStorage.setItem('authToken', token)
